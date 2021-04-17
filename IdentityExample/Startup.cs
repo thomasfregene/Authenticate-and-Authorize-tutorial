@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Basic
+namespace IdentityExample
 {
     public class Startup
     {
@@ -25,9 +25,19 @@ namespace Basic
             });
 
             //AddIdentity registers the services
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>(config=> {
+                config.Password.RequiredLength = 4;
+                config.Password.RequireDigit = false;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequireUppercase = false;
+            })
                 .AddEntityFrameworkStores<AppDBContext>()
                 .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(config=> {
+                config.Cookie.Name = "IndentityUserAuth.Cookie";
+                config.LoginPath = "/Home/Login";
+            });
             //services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", config =>
             //{
             //    config.Cookie.Name = "BasicAuth.Cookie";

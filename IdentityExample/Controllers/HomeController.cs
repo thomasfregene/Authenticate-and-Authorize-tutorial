@@ -37,6 +37,7 @@ namespace IdentityExample.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
             //login functionality
@@ -62,6 +63,7 @@ namespace IdentityExample.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Register(string username, string password)
         {
             //Register functionality
