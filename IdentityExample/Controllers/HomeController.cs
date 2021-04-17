@@ -22,9 +22,26 @@ namespace IdentityExample.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+
+            return View();
+        }
+
         public IActionResult Login(string username, string password)
         {
-           
+           //login functionality
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult Register(string username, string password)
+        {
+            //Register functionality
             return RedirectToAction("Index");
         }
     }
