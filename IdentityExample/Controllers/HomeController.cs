@@ -35,9 +35,16 @@ namespace IdentityExample.Controllers
             return View();
         }
 
-        public IActionResult Login(string username, string password)
+        public async Task<IActionResult> Login(string username, string password)
         {
-           //login functionality
+            //login functionality
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user != null)
+            {
+                //sign in 
+            }
+
             return RedirectToAction("Index");
         }
 
@@ -59,7 +66,7 @@ namespace IdentityExample.Controllers
 
             if (result.Succeeded)
             {
-                //user signin here
+                //sign user here
             }
 
             return RedirectToAction("Index");
