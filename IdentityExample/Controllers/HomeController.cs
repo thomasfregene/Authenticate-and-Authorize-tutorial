@@ -73,9 +73,13 @@ namespace IdentityExample.Controllers
             //create user in db
             var result = await _userManager.CreateAsync(user, password);
 
-            if (result.Succeeded)
+            //sign up
+            var signInresult = await _signInManager.PasswordSignInAsync(user, password, false, false);
+
+            if (signInresult.Succeeded)
             {
-                //sign user here
+
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
