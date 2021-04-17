@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,8 @@ namespace Basic.Controllers
             var licenseIdentity = new ClaimsIdentity(licenseClaims, "Goverment");
             //contains array of identities(OAuth identity etc)
             var userPrincipal = new ClaimsPrincipal(new[] { authenticateIdentity, licenseIdentity });
+
+            HttpContext.SignInAsync(userPrincipal);
             return RedirectToAction("Index");
         }
     }
