@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Basic.Controllers
@@ -22,6 +23,12 @@ namespace Basic.Controllers
 
         public IActionResult Authenticate() 
         {
+            var authenticateClaims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name, "Bob"),
+                new Claim(ClaimTypes.Email, "bob@gmail.com"),
+                new Claim("Authentication.Says", "Okay let him in")
+            }
             return RedirectToAction("Index");
         }
     }

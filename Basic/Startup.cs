@@ -19,6 +19,7 @@ namespace Basic
             services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", config=> 
             {
                 config.Cookie.Name = "BasicAuth.Cookie";
+                config.LoginPath = "/Home/Authenticate";
             });
             services.AddControllersWithViews();
         }
@@ -32,7 +33,9 @@ namespace Basic
             }
 
             app.UseRouting();
+
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
