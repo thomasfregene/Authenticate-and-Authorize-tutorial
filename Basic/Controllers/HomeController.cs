@@ -28,7 +28,18 @@ namespace Basic.Controllers
                 new Claim(ClaimTypes.Name, "Bob"),
                 new Claim(ClaimTypes.Email, "bob@gmail.com"),
                 new Claim("Authentication.Says", "Okay let him in")
-            }
+            };
+
+            var licenseClaims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name, "Bob R Chan"),
+                new Claim("DrivingLincense", "A+")
+            };
+
+            var authenticateIdentity = new ClaimsIdentity(authenticateClaims, "Authenticate Identity");
+            var licenseIdentity = new ClaimsIdentity(licenseClaims, "Goverment");
+            //contains array of identities(OAuth identity etc)
+            var userPrincipal = new ClaimsPrincipal(new[] { authenticateIdentity, licenseIdentity });
             return RedirectToAction("Index");
         }
     }
