@@ -84,5 +84,12 @@ namespace IdentityExample.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }
