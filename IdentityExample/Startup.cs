@@ -24,7 +24,9 @@ namespace Basic
                 config.UseInMemoryDatabase("Memory");
             });
 
+            //AddIdentity registers the services
             services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDBContext>()
                 .AddDefaultTokenProviders();
             //services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", config =>
             //{
